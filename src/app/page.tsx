@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RainAudio from './components/RainAudio';
+import { AudioScreenConfig } from "./components";
 
-export default function SalónAnimado() {
+export default function SalonAnimado() {
+
   const [frame, setFrame] = useState(0);
   const TOTAL_FRAMES = 9;
 
@@ -24,16 +25,16 @@ export default function SalónAnimado() {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-        <RainAudio/>
-        <Link href={`/`} className="text-8xl border-4 border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">INICIAR</Link>
-        <Link href={`/`} className="text-8xl border-4 border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">FINALES</Link>
-        <Link href={`/salir`} className="text-8xl border-4 border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link>
+        <AudioScreenConfig/>
+        <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">INICIAR</Link>
+        <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">FINALES</Link>
+        <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">OPCIONES</Link>
+        <Link href={`/salir`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link>
     </div>
     </div>
   );
 }
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /* <button onClick={onClick} className="text-5xl border rounded-2xl p-4">SALIR</button> */
 

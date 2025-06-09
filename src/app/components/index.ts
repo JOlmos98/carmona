@@ -1,1 +1,1 @@
-export {AudioScreenConfig} from './AudioScreenConfig';
+export * from "./SettingsContext";

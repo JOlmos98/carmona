@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AudioScreenConfig } from "./components";
+import { AudioScreenConfig } from "@/app/components";
 
-export default function SalonAnimado() {
+export default function Menu() {
 
   const [frame, setFrame] = useState(0);
   const TOTAL_FRAMES = 9;
@@ -25,12 +25,15 @@ export default function SalonAnimado() {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
+        <h1 className="text-8xl font-bold mb-6">CARMONA</h1>
+
         <AudioScreenConfig/>
         <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">INICIAR</Link>
         <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">FINALES</Link>
-        <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">OPCIONES</Link>
-        <Link href={`/salir`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link>
+        <Link href={`/settings`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">OPCIONES</Link>
+        <Link href={`/quit`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link>
     </div>
+    
     </div>
   );
 }

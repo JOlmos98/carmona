@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useSettings } from "./components/SettingsContext";
-import { getAudioPath } from "@/lib/getAudioPath";
 
 export default function Menu() {
 
@@ -31,24 +30,14 @@ export default function Menu() {
     }, []);
 
   useEffect(() => {
-    const loadAudio = async () => {
-      if (!audioRef.current) return;
-      const src = await getAudioPath("rain.ogg");
-      audioRef.current.src = src;
-      audioRef.current.volume = volume;
+    if (!audioRef.current) return;
+    audioRef.current.volume = volume;
 
-      if (isAudioEnabled) {
-        try {
-          await audioRef.current.play();
-        } catch (err) {
-          console.error("Error al reproducir el audio:", err);
-        }
-      } else {
-        audioRef.current.pause();
-      }
-    };
-
-    loadAudio();
+    if (isAudioEnabled) {
+      audioRef.current.play().catch(console.error);
+    } else {
+      audioRef.current.pause();
+    }
   }, [volume, isAudioEnabled]);
 
     // useEffect(() => {
@@ -91,10 +80,9 @@ export default function Menu() {
     <button onClick={() => setIsAudioEnabled(true)}>Activar sonido</button>
 
     </div>
-      <audio ref={audioRef} loop preload="auto" />
-        {/* <source src="/sounds/rain.ogg" type="audio/ogg" /> */}
-        {/* <source src="asset://public/sounds/rain.ogg" type="audio/ogg" />
-      </audio> */}
+      <audio ref={audioRef} loop preload="auto">
+        <source src="asset://public/sounds/rain.ogg" type="audio/ogg" />
+      </audio>
     </div>
   );
 }

@@ -40,7 +40,8 @@
     ],
     
     "resources": [
-      "../public/sounds"
+      "../public/sounds",
+      "resources/sounds/**/*"
     ]
   }
 }

@@ -927,7 +927,7 @@
     postcss "^8.4.41"
     tailwindcss "4.1.8"
 
-"@tauri-apps/api@^2.5.0":
+"@tauri-apps/api@^2.0.0", "@tauri-apps/api@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-2.5.0.tgz#f1c67b5505ba689621b549f9d0165389337586dc"
   integrity sha512-Ldux4ip+HGAcPUmuLT8EIkk6yafl5vK0P0c0byzAKzxJh7vxelVtdPONjfgTm96PbN24yjZNESY8CKo8qniluA==
@@ -1003,6 +1003,13 @@
     "@tauri-apps/cli-win32-arm64-msvc" "2.5.0"
     "@tauri-apps/cli-win32-ia32-msvc" "2.5.0"
     "@tauri-apps/cli-win32-x64-msvc" "2.5.0"
+
+"@tauri-apps/plugin-fs@~2":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-fs/-/plugin-fs-2.3.0.tgz#f75258385b61b19bb22d7d94d01f156fc594e20e"
+  integrity sha512-G9gEyYVUaaxhdRJBgQTTLmzAe0vtHYxYyN1oTQzU3zwvb8T+tVLcAqCdFMWHq0qGeGbmynI5whvYpcXo5LvZ1w==
+  dependencies:
+    "@tauri-apps/api" "^2.0.0"
 
 "@ts-morph/common@~0.19.0":
   version "0.19.0"

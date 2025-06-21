@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jersey_10 } from "next/font/google";
 import "./globals.css";
+import { SettingsProvider } from './components/SettingsContext';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jersey_10.className} antialiased`} >
-        {children}
+        <SettingsProvider>
+          {children}
+        </SettingsProvider>
       </body>
     </html>
   );

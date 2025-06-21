@@ -1,0 +1,17 @@
+{
+    "Home": {
+        "Login": "Anmelden",
+        "Register": "Registrieren",
+        "Log out": "Abmelden",
+        "Play": "Spielen",
+        "Quit": "Beenden",
+        "Endings": "Endungen",
+        "Settings": "Einstellungen",
+        "Options": "Optionen",
+        "FAQ": "FAQ",
+        "404": "Die Seite, die Sie suchen, existiert nicht.",
+        "Credits": "Credits",
+        "Back": "Zurück",
+        "Leaderboards": "Ranglisten"
+    }
+}

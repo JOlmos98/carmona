@@ -11,14 +11,13 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  ...compat.config({
-    extends: ['next'],
-    rules: {
-      // 'react/no-unescaped-entities': 'off',
-      // '@next/next/no-page-custom-font': 'off',
-      '@next/next/no-img-element': 'off',
-    },
-  }),
+
+  {
+    ignores: [
+      "src/types/next-auth.d.ts", 
+    ],
+  },
+
 ];
 
 export default eslintConfig;

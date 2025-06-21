@@ -1,0 +1,17 @@
+{
+    "Home": {
+        "Login": "Iniciar sesión",
+        "Register": "Registrarse",
+        "Log out": "Cerrar sesión",
+        "Play": "Jugar",
+        "Quit": "Salir",
+        "Endings": "Finales",
+        "Settings": "Configuración",
+        "Options": "Opciones",
+        "FAQ": "FAQ",
+        "404": "La página que estás buscando no existe.",
+        "Credits": "Créditos",
+        "Back": "Volver",
+        "Leaderboards": "Clasificaciones"
+    }
+}

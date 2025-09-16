@@ -4,6 +4,8 @@ import { Rain } from "../../components/components/Rain/Rain";
 import Image from "next/image";
 import { ButtonMenu } from "@/components/components";
 import { getTranslations } from "next-intl/server";
+import { SettingsMenu } from "@/components/components/Settings/SettingsMenu";
+import { ShowSettings } from "@/components/components/Settings/ShowSettings";
 
 export default async function Menu() {
 
@@ -26,6 +28,7 @@ export default async function Menu() {
         <ButtonMenu href={`/`} text={`FAQ`}/>
         <ButtonMenu href={`/`} text={t("Credits")}/>
 
+{/* <SettingsMenu /> */}
       </div>
       <Rain />
 

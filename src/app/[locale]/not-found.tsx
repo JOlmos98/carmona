@@ -1,6 +1,7 @@
 "use server";
 
 import { getTranslations } from "next-intl/server";
+import { ButtonMenu } from "@/components/components";
 import Image from "next/image";
 
 export default async function NotFoundPage() {
@@ -8,7 +9,7 @@ export default async function NotFoundPage() {
   const t = await getTranslations("Home");
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-8 gap-6 lg:gap-12 font-[family-name:var(--font-geist-sans)]">
+    <div className="border-indigo-800 flex flex-col md:flex-row items-center justify-center min-h-screen p-8 gap-6 lg:gap-12 font-[family-name:var(--font-geist-sans)]">
 
       {/* Imagen a la izquierda */}
       <div className="w-2/4 lg:w-1/4 flex justify-center">
@@ -23,11 +24,12 @@ export default async function NotFoundPage() {
       </div>
 
       {/* Texto centrado */}
-      <div className="w-full md:w-1/4 flex flex-col items-center text-center">
-        <h1 className="text-3xl lg:text-9xl font-bold text-blue-cyan mb-2 lg:mb-10">404</h1>
-        <p className="text-2xl">
+      <div className="w-full md:w-1/4 flex flex-col items-center text-center" >
+        <h1 className="text-3xl lg:text-9xl font-bold text-neutral-200 mb-2 lg:mb-10">404</h1>
+        <p className="text-2xl text-neutral-200">
           {t("404")}
         </p>
+        <p className="my-8"><ButtonMenu text={"Return"} href={"/"}/></p>
       </div>
 
     </div>

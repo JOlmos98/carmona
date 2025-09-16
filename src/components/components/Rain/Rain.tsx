@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import "./rain.css";
+import { useSettings } from '../Settings/SettingsContext';
 
 export const Rain = () => {
     const canvasRef1 = useRef<HTMLCanvasElement>(null);
@@ -186,12 +187,40 @@ export const Rain = () => {
         };
     }, []);
 
+//! Código para sonido:
+
+  // 1. Creamos una referencia para poder controlar la etiqueta <audio>
+  const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // 2. Obtenemos el volumen y si el audio está activado desde el contexto global
+  const { volume, isAudioEnabled } = useSettings();
+
+  // 3. Usamos useEffect para reaccionar a los cambios en los ajustes
+  useEffect(() => {
+    const audioElement = audioRef.current;
+    if (!audioElement) return;
+
+    // Sincronizamos el volumen
+    audioElement.volume = volume;
+
+    // Sincronizamos si debe sonar o no
+    if (isAudioEnabled) {
+      audioElement.play().catch(error => console.error("Error al intentar reproducir el audio:", error));
+    } else {
+      audioElement.pause();
+    }
+  }, [volume, isAudioEnabled]); // Este código solo se ejecuta cuando 'volume' o 'isAudioEnabled' cambian
+
     return (
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
             <canvas ref={canvasRef1} className="c1" />
             <div className="reflection-wrapper">
                 <canvas ref={canvasRef2} className="c2" />
             </div>
+            <audio ref={audioRef} loop preload="auto">
+                <source src="/sounds/rain.ogg" type="audio/ogg" />
+                Tu navegador no soporta el elemento de audio.
+            </audio>
         </div>
     );
 };

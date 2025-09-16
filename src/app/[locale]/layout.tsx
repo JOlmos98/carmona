@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
+import { ShowSettings } from "@/components/components/Settings/ShowSettings";
 
 const jersey_10 = Jersey_10({
   weight: '400',
@@ -33,13 +34,14 @@ export default async function RootLayout({
   }
 
   const messages = await getMessages();
-  
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${jersey_10.className} antialiased`} >
         <NextIntlClientProvider messages={messages}>
           <Providers>
             {children}
+            <ShowSettings />
           </Providers>
         </NextIntlClientProvider>
       </body>

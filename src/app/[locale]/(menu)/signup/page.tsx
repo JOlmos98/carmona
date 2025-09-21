@@ -1,49 +1,38 @@
 "use server";
 
-// import { SignUpForm } from "@/components/sign-up-form/SignUpForm";
+import { Rain } from "@/components/components";
+import { SignUpForm } from "@/components/components/SignUpForm/SignUpForm";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
-export default async function SignUpPage() {
+export default async function LogInPage() {
 
-  const t = await getTranslations("SignUp");
+  const h = await getTranslations("Home");
 
   return (
-    <div className="flex min-h-screen w-full font-[family-name:var(--font-geist-sans)]">
+    <div className="relative w-full h-screen overflow-hidden">
+      <Image
+        width={1920}
+        height={1080}
+        src={`/menu/home1.png`}
+        alt="Fondo de Login"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
 
-      {/*Lado izquierdo*/}
-      <div className="w-1/2 hidden lg:flex items-center justify-start px-12">
-        <p className="text-left text-4xl lg:text-7xl font-bold text-zinc-900 dark:text-white leading-tight">{t("Sign Up to")}{" "}<span className="text-blue-cyan">{t("All the content")}</span>
-        </p>
+      <div className="relative flex flex-col items-center justify-center h-full text-white z-30">
+        <h1 className="text-9xl font-bold mb-4">CARMONA</h1>
+
+        <SignUpForm />
+
+        <div className="flex justify-center my-14">
+          <Link href="/" className="w-full text-4xl text-neutral-400 hover:text-white">
+            {h("Back")}
+          </Link>
+        </div>
       </div>
 
-      {/*Lado derecho*/}
-      <div className="w-full lg:w-1/2 bg-gray-300 dark:bg-zinc-800 flex items-center justify-center p-8">
-        {/* <SignUpForm /> */}
-      </div>
+      <Rain />
     </div>
   );
 }
-
-
-// "use server";
-
-// import { SignUpForm } from "@/components/sing-up-form/SingUpForm";
-
-// export default async function SignUpPage() {
-
-//   return (
-//     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
-//       <div className="flex flex-col row-start-2 items-center sm:items-start mt-12 lg:mt-38">
-//         <div>
-//           <div>
-//             <SignUpForm />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-
-//   );
-// }
-
-
-{/* <h1 className="text-xl font-bold">{t("Sign Up")}</h1> */ }

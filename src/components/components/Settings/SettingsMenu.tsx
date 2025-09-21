@@ -55,30 +55,31 @@ export function SettingsMenu() {
         </div>
     );
 
-    // return (
-    //     <div className="">
-    //         <div>
-    //             <label className="text-neutral-200 text-xl">Volumen</label>
-    //             <Slider
-    //                 // Tu slider espera un valor entre 0 y 100, pero tu estado va de 0 a 1.
-    //                 // Hacemos la conversión.
-    //                 value={[volume * 100]}
-    //                 onValueChange={(value) => setVolume(value[0] / 100)}
-    //                 max={100}
-    //                 step={1}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label className="text-neutral-200 text-xl">Activar Sonido </label>
-    //             <Switch
-    //                 checked={isAudioEnabled}
-    //                 onCheckedChange={setIsAudioEnabled}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label className="text-neutral-200 text-xl">Idioma</label>
-    //             <LanguageSelector />
-    //         </div>
-    //     </div>
-    // );
 }
+
+// return (
+//     <div className="">
+//         <div>
+//             <label className="text-neutral-200 text-xl">Volumen</label>
+//             <Slider
+//                 // Tu slider espera un valor entre 0 y 100, pero tu estado va de 0 a 1.
+//                 // Hacemos la conversión.
+//                 value={[volume * 100]}
+//                 onValueChange={(value) => setVolume(value[0] / 100)}
+//                 max={100}
+//                 step={1}
+//             />
+//         </div>
+//         <div>
+//             <label className="text-neutral-200 text-xl">Activar Sonido </label>
+//             <Switch
+//                 checked={isAudioEnabled}
+//                 onCheckedChange={setIsAudioEnabled}
+//             />
+//         </div>
+//         <div>
+//             <label className="text-neutral-200 text-xl">Idioma</label>
+//             <LanguageSelector />
+//         </div>
+//     </div>
+// );

@@ -1,14 +1,22 @@
+
 export type UserDTO = {
   id?: number;
-  name: string;
-  last_name: string;
+  userName: string;
   email: string;
   password: string;
-  phone?: string | null;
-  bio?: string | null;
-  website?: string | null;
   isVerified?: string | null;
+  isDonor?: string | null;
+  end0?: string | null;
+  end1?: string | null;
+  end2?: string | null;
+  end3?: string | null;
+  end4?: string | null;
 };
+
+// last_name: string;
+// phone?: string | null;
+// bio?: string | null;
+// website?: string | null;
 
 // export type ArticleDTO = {
 //   id: number;

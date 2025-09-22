@@ -14,7 +14,15 @@ const eslintConfig = [
 
   {
     ignores: [
-      "src/types/next-auth.d.ts", 
+      // "src/types/next-auth.d.ts", 
+      // "generated/",
+            "**/node_modules/**",
+      "**/.next/**",
+      "**/out/**",
+      "src/types/next-auth.d.ts",
+      "generated/**", // Ignora la carpeta 'generated' en cualquier nivel
+      "**/generated/**", // Otra forma de asegurar que la ignore
+      "generated/prisma/**", // Siendo muy específicos
     ],
   },
 

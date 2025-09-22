@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 export default async function LogInPage() {
-  const t = await getTranslations("LogIn");
+
   const h = await getTranslations("Home");
 
   return (

@@ -16,7 +16,7 @@ const eslintConfig = [
     ignores: [
       // "src/types/next-auth.d.ts", 
       // "generated/",
-            "**/node_modules/**",
+      "**/node_modules/**",
       "**/.next/**",
       "**/out/**",
       "src/types/next-auth.d.ts",

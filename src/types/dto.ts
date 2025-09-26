@@ -1,17 +1,48 @@
 
+
+// /types/dto.ts o donde prefieras
+
 export type UserDTO = {
-  id?: number;
+  id: string;
+  name: string | null;
+  email: string | null;
+  emailVerified: Date | null;
+  image: string | null;
   userName: string;
-  email: string;
-  password: string;
-  isVerified?: string | null;
-  isDonor?: string | null;
-  end0?: string | null;
-  end1?: string | null;
-  end2?: string | null;
-  end3?: string | null;
-  end4?: string | null;
+  isVerified: boolean;
+  isDonor: boolean;
+  end0: boolean;
+  end1: boolean;
+  end2: boolean;
+  end3: boolean;
+  end4: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 };
+
+// /types/dto.ts
+
+export type AccountDTO = {
+  id: string;
+  userId: string;
+  type: string;
+  provider: string;
+  providerAccountId: string;
+};
+
+// export type UserDTO = {
+//   id?: number;
+//   userName: string;
+//   email: string;
+//   password: string;
+//   isVerified?: string | null;
+//   isDonor?: string | null;
+//   end0?: string | null;
+//   end1?: string | null;
+//   end2?: string | null;
+//   end3?: string | null;
+//   end4?: string | null;
+// };
 
 // last_name: string;
 // phone?: string | null;

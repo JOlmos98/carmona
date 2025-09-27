@@ -14,7 +14,6 @@ export async function logOut() {
   await signOut({ redirectTo: "/login" }); // Redirige al login después de cerrar sesión
 }
 
-
 // import { db } from '@/db/drizzle';
 // import { articles } from '@/db/drizzle/schema';
 // import { ArticleDTO } from '@/types/dto';

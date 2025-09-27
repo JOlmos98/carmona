@@ -53,3 +53,62 @@ export const config = {
     '/login',
   ],
 };
+
+
+//SUGERENCIA DE LA IA:
+
+// /middleware.ts
+
+// import createMiddleware from 'next-intl/middleware';
+// import { routing } from './i18n/routing';
+// import { NextResponse } from 'next/server';
+// import type { NextRequest } from 'next/server';
+// import { detectLocale } from './lib/detectLocale';
+// import { auth } from "@/auth"; // <-- ¡CAMBIO 1: Importa `auth`!
+
+// const supportedLocales = ['en', 'es', 'de'];
+// const protectedPaths = ['/dashboard', '/profile', '/settings'];
+
+// // El middleware de i18n que se ejecutará al final
+// const intlMiddleware = createMiddleware(routing);
+
+// export default auth((request) => { // <-- ¡CAMBIO 2: Envuelve todo en `auth`!
+//   const { pathname } = request.nextUrl;
+
+//   const segments = pathname.split('/');
+//   const localeInPath = supportedLocales.includes(segments[1]) ? segments[1] : null;
+
+//   const pathWithoutLocale = localeInPath
+//     ? '/' + segments.slice(2).join('/')
+//     : pathname;
+
+//   const isProtectedPath = protectedPaths.some(path => pathWithoutLocale.startsWith(path));
+
+//   // La nueva forma de comprobar la autenticación con el helper `auth`
+//   const isAuthenticated = !!request.auth?.user;
+
+//   if (isProtectedPath && !isAuthenticated) {
+//     const locale = localeInPath || detectLocale(request);
+//     // request.url ya está disponible en el objeto `request`
+//     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+//   }
+
+//   // Si no es una ruta protegida o el usuario está autenticado,
+//   // deja que el middleware de next-intl haga su trabajo.
+//   return intlMiddleware(request);
+// });
+
+
+// export const config = {
+//   // El matcher necesita excluir las rutas internas de Next.js y los assets estáticos
+//   // para que el middleware no interfiera con ellos.
+//   matcher: [
+//     // Habilita un prefijo opcional para los locales
+//     '/',
+//     '/(de|en|es)/:path*',
+
+//     // Evita que el matcher se ejecute en rutas que no deberían ser procesadas
+//     // como las de la API o los archivos estáticos.
+//     '/((?!api|_next/static|_next/image|favicon.ico).*)'
+//   ],
+// };

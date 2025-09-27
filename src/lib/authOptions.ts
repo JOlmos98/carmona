@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 // src/lib/authOptions.ts
 
 // import { PrismaAdapter } from "@auth/prisma-adapter";

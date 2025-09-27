@@ -110,10 +110,13 @@ export const LogInForm = () => {
 
             <GoogleSignInButton />
             <GitHubSignInButton />
-            {session&& 
-            <SignOutButton/>
+            {session &&
+                <div>
+                    <SignOutButton />
+                    <p>Sesión iniciada como {JSON.stringify(session)}</p>
+                </div>
             }
-            
+
             <p className="text-md text-center text-neutral-400">
                 {t("Don't have an account?")}{" "}
                 <Link href="/signup" className="text-neutral-300 hover:text-white transition hover:underline">

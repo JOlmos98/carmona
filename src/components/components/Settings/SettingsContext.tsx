@@ -1,6 +1,6 @@
 "use client";
 
-import { SettingsContextType } from "@/backend/Settings";
+import { SettingsContextType } from "@/backend/settings";
 import { createContext, useContext, useState } from "react";
 
 const SettingsContext = createContext<SettingsContextType | null>(null);

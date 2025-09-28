@@ -40,14 +40,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${jersey_10.className} antialiased`} >
+      <body className={`${jersey_10.className} antialiased`} suppressHydrationWarning >
         <NextIntlClientProvider messages={messages}>
-              <SessionProvider session={session}>
-          <Providers>
-            {children}
-            <ShowSettings />
-          </Providers>
-              </SessionProvider>
+          <SessionProvider session={session}>
+            <Providers>
+              {children}
+              <ShowSettings />
+            </Providers>
+          </SessionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

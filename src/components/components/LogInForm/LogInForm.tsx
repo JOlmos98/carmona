@@ -110,7 +110,9 @@ export const LogInForm = () => {
 
             <GoogleSignInButton />
             <GitHubSignInButton />
-            {session &&
+            
+            {/* DEBUG */}
+            {session.status === "authenticated" &&
                 <div>
                     <SignOutButton />
                     <p>Sesión iniciada como {JSON.stringify(session)}</p>

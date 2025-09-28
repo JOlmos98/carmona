@@ -3,11 +3,18 @@
 import { Rain } from "../../components/components/Rain/Rain";
 import Image from "next/image";
 import { ButtonMenu } from "@/components/components";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+// import { getSession } from "next-auth/react";
+import { redirect } from "@/i18n/navigation";
+import { auth } from "@/backend/auth";
 
 export default async function Menu() {
 
   const t = await getTranslations("Home");
+  const session = await auth();
+  const locale = await getLocale();
+  // console.log("session", session);
+  if (session) redirect({ href: '/game', locale: locale });
 
   return (
     <div className="relative w-full h-screen overflow-hidden">

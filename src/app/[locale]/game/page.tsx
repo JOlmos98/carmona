@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { ButtonMenu, Rain } from "@/components/components";
 import { getTranslations } from "next-intl/server";
+import { SignOutButton } from "@/components/components/SignOutButton/SignOutButton";
+import { ButtonDialog } from "@/components/components/ButtonDialog/ButtonDialog";
+// import { ShowOptions } from '../../../components/components/Options/ShowOptions';
 
 export default async function Menu() {
 
@@ -20,9 +23,25 @@ export default async function Menu() {
       <div className="relative flex flex-col items-center justify-center h-full text-white z-30">
         <h1 className="text-9xl font-bold mb-6">CARMONA</h1>
 
-        <ButtonMenu href={`/`} text={t("Play")} />
-        <ButtonMenu href={`/`} text={t("Leaderboards")} />
-        <ButtonMenu href={`/`} text={t("Endings")} />
+        <ButtonMenu href={`/`} text={t("Play")} my={4} />
+        <ButtonDialog buttonText="Leaderboards" dialogTitle="Leaderboards" />
+        <ButtonDialog buttonText="Endings" dialogTitle="Endings" />
+        <ButtonDialog buttonText="Options" dialogTitle="Options" urlItems={[{ href: "/", text: "FAQs" }, { href: "/", text: "Credits" }, { href: "/logout", text: "Cerrar sesión" }]} />
+
+        {/* <ButtonMenu href={`/`} text={t("Leaderboards")} my={4} />
+        <ButtonMenu href={`/`} text={t("Endings")} my={4} />
+        <ButtonMenu href={`/`} text={t("Options")} my={4} /> */}
+
+        <div>
+
+          {/* <ShowOptions /> */}
+        </div>
+        {/* <ButtonMenu href={`/`} text={t("Options")} my={4} /> // Dentro estará FAQ, Creditos, Cerrar sesión, etc */}
+
+        {/* <ButtonMenu href={`/`} text={`FAQ`} my={3} />
+        <ButtonMenu href={`/`} text={t("Credits")} my={3} /> */}
+        {/* <ButtonMenu href={`/`} text={t("Credits")} /> */}
+        {/* <SignOutButton /> */}
 
       </div>
       <Rain />

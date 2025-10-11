@@ -1,15 +1,14 @@
-"use server";
+'use server';
 
-import Image from "next/image";
-import { ButtonMenu, Rain } from "@/components/components";
-import { getTranslations } from "next-intl/server";
-import { SignOutButton } from "@/components/components/SignOutButton/SignOutButton";
-import { ButtonDialog } from "@/components/components/ButtonDialog/ButtonDialog";
+import Image from 'next/image';
+import { ButtonMenu, Rain } from '@/components/components';
+import { getTranslations } from 'next-intl/server';
+import { SignOutButton } from '@/components/components/SignOutButton/SignOutButton';
+import { ButtonDialog } from '@/components/components/ButtonDialog/ButtonDialog';
 // import { ShowOptions } from '../../../components/components/Options/ShowOptions';
 
 export default async function Menu() {
-
-  const t = await getTranslations("Home");
+  const t = await getTranslations('Home');
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -23,41 +22,62 @@ export default async function Menu() {
       <div className="relative flex flex-col items-center justify-center h-full text-white z-30">
         <h1 className="text-9xl font-bold mb-6">CARMONA</h1>
 
-        <ButtonMenu href={`/`} text={t("Play")} my={4} />
-        <ButtonDialog buttonText="Leaderboards" dialogTitle="Leaderboards" />
-        <ButtonDialog buttonText="Endings" dialogTitle="Endings" />
-        <ButtonDialog buttonText="Options" dialogTitle="Options" urlItems={[{ href: "/", text: "FAQs" }, { href: "/", text: "Credits" }, { href: "/logout", text: "Cerrar sesión" }]} />
+        <ButtonMenu
+          href={`/`}
+          text={t('Play')}
+          my={4}
+        />
+        <ButtonDialog
+          buttonText="Leaderboards"
+          dialogTitle="Leaderboards"
+        />
+        <ButtonDialog
+          buttonText="Endings"
+          dialogTitle="Endings"
+        />
+        <ButtonDialog
+          buttonText="Options"
+          dialogTitle="Options"
+          urlItems={[
+            { href: '/', text: 'FAQs' },
+            { href: '/', text: 'Credits' },
+            { href: '/logout', text: 'Cerrar sesión', className: 'text-red-300 hover:text-red-400 text-4xl p-2 transition duration-200 erase-in-out cursor-pointer' }
+          ]}
+        />
 
         {/* <ButtonMenu href={`/`} text={t("Leaderboards")} my={4} />
         <ButtonMenu href={`/`} text={t("Endings")} my={4} />
         <ButtonMenu href={`/`} text={t("Options")} my={4} /> */}
 
-        <div>
-
-          {/* <ShowOptions /> */}
-        </div>
+        <div>{/* <ShowOptions /> */}</div>
         {/* <ButtonMenu href={`/`} text={t("Options")} my={4} /> // Dentro estará FAQ, Creditos, Cerrar sesión, etc */}
 
         {/* <ButtonMenu href={`/`} text={`FAQ`} my={3} />
         <ButtonMenu href={`/`} text={t("Credits")} my={3} /> */}
         {/* <ButtonMenu href={`/`} text={t("Credits")} /> */}
         {/* <SignOutButton /> */}
-
       </div>
       <Rain />
-
     </div>
   );
 }
 
-{/* <audio ref={audioRef} loop preload="auto">
+{
+  /* <audio ref={audioRef} loop preload="auto">
         <source src="asset://public/sounds/rain.ogg" type="audio/ogg" />
-      </audio> */}
+      </audio> */
+}
 
-{/* <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">FINALES</Link>
-        <Link href={`/settings`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">OPCIONES</Link> */}
-{/* <Link href={`/quit`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link> */ }
-{/* <button onClick={() => setIsAudioEnabled(true)}>Activar sonido</button> */ }
+{
+  /* <Link href={`/`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">FINALES</Link>
+        <Link href={`/settings`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">OPCIONES</Link> */
+}
+{
+  /* <Link href={`/quit`} className="w-sm text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">SALIR</Link> */
+}
+{
+  /* <button onClick={() => setIsAudioEnabled(true)}>Activar sonido</button> */
+}
 
 // const [frame, setFrame] = useState(0);
 // const TOTAL_FRAMES = 9;

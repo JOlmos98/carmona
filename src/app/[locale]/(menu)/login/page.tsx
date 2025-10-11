@@ -1,14 +1,18 @@
-"use server";
+'use server';
 
-import { Rain } from "@/components/components";
-import { LogInForm } from "@/components/components/LogInForm/LogInForm";
-import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
-import Image from "next/image";
+import { auth } from '@/backend/auth';
+import { Rain } from '@/components/components';
+import { LogInForm } from '@/components/components/LogInForm/LogInForm';
+import { Link, redirect } from '@/i18n/navigation';
+import { getLocale, getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 
 export default async function LogInPage() {
+  const h = await getTranslations('Home');
 
-  const h = await getTranslations("Home");
+  const session = await auth();
+  const locale = await getLocale();
+  if (session) redirect({ href: '/game', locale: locale });
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -26,8 +30,11 @@ export default async function LogInPage() {
         <LogInForm />
 
         <div className="flex justify-center my-14">
-          <Link href="/" className="w-full text-4xl text-neutral-400 hover:text-white">
-            {h("Back")}
+          <Link
+            href="/"
+            className="w-full text-4xl text-neutral-400 hover:text-white"
+          >
+            {h('Back')}
           </Link>
         </div>
       </div>

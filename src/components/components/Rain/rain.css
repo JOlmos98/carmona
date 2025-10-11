@@ -1,9 +1,11 @@
-html, body {
+html,
+body {
   margin: 0;
   background-color: #41415d;
 }
 
-canvas, .c2 {
+canvas,
+.c2 {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -11,14 +13,14 @@ canvas, .c2 {
 }
 
 .reflection-wrapper {
-  max-height:100px;
+  max-height: 100px;
   overflow: hidden;
 }
 
 .c2 {
   transform: rotate3d(1, 0, 0, 0deg) rotate3d(0, 1, 0, 180deg) rotate3d(0, 0, 1, 180deg);
   backface-visibility: visible;
-  opacity: .4;
+  opacity: 0.4;
   /* background-color: gray; */
   filter: blur(1px);
   z-index: 15;

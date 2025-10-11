@@ -12,7 +12,7 @@ export function detectLocale(request: NextRequest | Request): string {
   if (cookiesObj) {
     localeCookie = cookiesObj.get('NEXT_LOCALE')?.value;
   } else {
-    const cookieHeader = (request.headers.get("cookie") ?? "");
+    const cookieHeader = request.headers.get('cookie') ?? '';
     const match = cookieHeader.match(/NEXT_LOCALE=([^;]+)/);
     localeCookie = match ? match[1] : undefined;
   }

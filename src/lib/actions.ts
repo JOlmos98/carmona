@@ -1,25 +1,25 @@
 'use server';
 
-import { signIn, signOut } from "@/backend/auth";
+import { signIn, signOut } from '@/backend/auth';
 
-export async function signInWithGoogle() {await signIn("google");}
+export async function signInWithGoogle() {
+  await signIn('google');
+}
 
-export async function signInWithGitHub() {await signIn("github");}
+export async function signInWithGitHub() {
+  await signIn('github');
+}
 
-export async function logOut() {await signOut({ redirectTo: "/" });}
-
-
-
-
-
-
+export async function logOut() {
+  await signOut({ redirectTo: '/' });
+}
 
 // import { db } from '@/db/drizzle';
 // import { articles } from '@/db/drizzle/schema';
 // import { ArticleDTO } from '@/types/dto';
 
 // export async function getAllArticles(): Promise<ArticleDTO[]> {
-  
+
 //   try {
 
 //     const dbArticles = await db.select({

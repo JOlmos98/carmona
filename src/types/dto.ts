@@ -1,5 +1,3 @@
-
-
 // /types/dto.ts o donde prefieras
 
 export type UserDTO = {
@@ -22,13 +20,7 @@ export type UserDTO = {
 
 // /types/dto.ts
 
-export type AccountDTO = {
-  id: string;
-  userId: string;
-  type: string;
-  provider: string;
-  providerAccountId: string;
-};
+export type AccountDTO = { id: string; userId: string; type: string; provider: string; providerAccountId: string };
 
 // export type UserDTO = {
 //   id?: number;

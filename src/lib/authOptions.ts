@@ -1,4 +1,3 @@
-
 // src/lib/authOptions.ts
 
 // import { PrismaAdapter } from "@auth/prisma-adapter";
@@ -49,7 +48,7 @@
 //                     console.log("Contraseña incorrecta");
 //                     return null;
 //                 }
-                
+
 //                 // 3. Si todo es correcto, devuelve el objeto usuario
 //                 // Next-Auth se encargará de crear la sesión
 //                 return {
@@ -92,18 +91,6 @@
 //         },
 //     },
 // };
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { NextAuthOptions } from "next-auth";
 // import CredentialsProvider from "next-auth/providers/credentials";

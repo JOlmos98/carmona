@@ -1,62 +1,60 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 // import { useRef } from "react";
 // import { useSettings } from "@/app/components/SettingsContext";
-import { Link } from "@/i18n/navigation";
+import { Link } from '@/i18n/navigation';
 
 export default function Opciones() {
-    // const [frame, setFrame] = useState(0);
-    // const TOTAL_FRAMES = 9;
-    // const audioRef = useRef<HTMLAudioElement>(null);
+  // const [frame, setFrame] = useState(0);
+  // const TOTAL_FRAMES = 9;
+  // const audioRef = useRef<HTMLAudioElement>(null);
 
+  // useEffect(() => {
+  //     const loadAudio = async () => {
+  //         if (!audioRef.current) return;
 
-    // useEffect(() => {
-    //     const loadAudio = async () => {
-    //         if (!audioRef.current) return;
+  //         try {
+  //             const path = await resolveResource("sounds/rain.ogg");
+  //             audioRef.current.src = path;
+  //             audioRef.current.volume = volume;
 
-    //         try {
-    //             const path = await resolveResource("sounds/rain.ogg");
-    //             audioRef.current.src = path;
-    //             audioRef.current.volume = volume;
+  //             if (isAudioEnabled) {
+  //                 await audioRef.current.play();
+  //             } else {
+  //                 audioRef.current.pause();
+  //             }
+  //         } catch (err) {
+  //             console.error("Error cargando audio:", err);
+  //         }
+  //     };
 
-    //             if (isAudioEnabled) {
-    //                 await audioRef.current.play();
-    //             } else {
-    //                 audioRef.current.pause();
-    //             }
-    //         } catch (err) {
-    //             console.error("Error cargando audio:", err);
-    //         }
-    //     };
+  //     loadAudio();
+  // }, [volume, isAudioEnabled]);
 
-    //     loadAudio();
-    // }, [volume, isAudioEnabled]);
+  // const handleVolumeChange = (value: number[]) => {
+  //     const newVol = value[0] / 100;
+  //     setVolume(newVol);
+  // };
 
-    // const handleVolumeChange = (value: number[]) => {
-    //     const newVol = value[0] / 100;
-    //     setVolume(newVol);
-    // };
+  // const toggleAudio = () => {
+  //     setIsAudioEnabled(!isAudioEnabled);
+  // };
 
-    // const toggleAudio = () => {
-    //     setIsAudioEnabled(!isAudioEnabled);
-    // };
+  return (
+    <div className="relative w-full h-screen overflow-hidden">
+      <Image
+        width={1920}
+        height={1080}
+        src={`/menu/home1.png`}
+        alt="Fondo"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
 
-    return (
-        <div className="relative w-full h-screen overflow-hidden">
-            <Image
-                width={1920}
-                height={1080}
-                src={`/menu/home1.png`}
-                alt="Fondo"
-                className="absolute inset-0 w-full h-full object-cover z-0"
-            />
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-xl space-y-6">
+        <h1 className="text-8xl font-bold mb-6">OPCIONES</h1>
 
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-xl space-y-6">
-
-                <h1 className="text-8xl font-bold mb-6">OPCIONES</h1>
-
-                {/* <div className="border-4 text-2xl rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900">
+        {/* <div className="border-4 text-2xl rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900">
                     <div className="w-lg text-center text-5xl my-4">
                         <button onClick={toggleAudio} className="flex justify-between items-center w-full">
                             <span className="text-left">{isAudioEnabled ? "Audio Activado" : "Audio Desactivado"}</span>
@@ -94,14 +92,17 @@ export default function Opciones() {
 
                 <audio ref={audioRef} loop preload="auto"></audio>
                  <source src="asset://sounds/rain.ogg" type="audio/ogg" />
-                </audio> */} 
+                </audio> */}
 
-                <Link href={`/`} className="w-lg text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out">
-                    VOLVER
-                </Link>
-            </div>
-        </div>
-    );
+        <Link
+          href={`/`}
+          className="w-lg text-center text-8xl border-4 rounded-2xl border-neutral-400 text-neutral-400 p-4 my-5 bg-orange-900 hover:text-neutral-100 hover:border-neutral-100 hover:scale-110 transition duration-500 ease-in-out"
+        >
+          VOLVER
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 // "use client";
@@ -154,7 +155,6 @@ export default function Opciones() {
 //             audioRef.current.pause();
 //         }
 //     }, [volume, isAudioEnabled, audioSrc]);
-
 
 //     const handleVolumeChange = (value: number[]) => {
 //         const newVol = value[0] / 100;

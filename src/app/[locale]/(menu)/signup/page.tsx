@@ -1,14 +1,13 @@
-"use server";
+'use server';
 
-import { Rain } from "@/components/components";
-import { SignUpForm } from "@/components/components/SignUpForm/SignUpForm";
-import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
-import Image from "next/image";
+import { Rain } from '@/components/components';
+import { SignUpForm } from '@/components/components/SignUpForm/SignUpForm';
+import { Link } from '@/i18n/navigation';
+import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 
 export default async function LogInPage() {
-
-  const h = await getTranslations("Home");
+  const h = await getTranslations('Home');
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -26,8 +25,11 @@ export default async function LogInPage() {
         <SignUpForm />
 
         <div className="flex justify-center my-14">
-          <Link href="/" className="w-full text-4xl text-neutral-400 hover:text-white">
-            {h("Back")}
+          <Link
+            href="/"
+            className="w-full text-4xl text-neutral-400 hover:text-white"
+          >
+            {h('Back')}
           </Link>
         </div>
       </div>

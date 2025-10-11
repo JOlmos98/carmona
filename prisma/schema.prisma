@@ -1,36 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// generator client {
-//   provider = "prisma-client-js"
-//   // output   = "../src/generated/prisma"
-// }
-
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
-
-// model User {
-//   id    Int     @id @default(autoincrement())
-//   userName String @unique
-//   email String  @unique
-//   password String
-//   isVerified Boolean @default(false)
-//   isDonor Boolean @default(false)
-//   end0 Boolean @default(false)
-//   end1 Boolean @default(false)
-//   end2 Boolean @default(false)
-//   end3 Boolean @default(false)
-//   end4 Boolean @default(false)
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
-
-
 // /prisma/schema.prisma
 
 generator client {
@@ -49,21 +16,23 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  password      String?   
+  password      String?
   accounts      Account[]
   sessions      Session[]
 
-  // --- TUS CAMPOS PERSONALIZADOS ---
   userName   String?   @default(cuid())
   isVerified Boolean   @default(false)
   isDonor    Boolean   @default(false)
-  end0       Boolean   @default(false)
-  end1       Boolean   @default(false)
-  end2       Boolean   @default(false)
-  end3       Boolean   @default(false)
-  end4       Boolean   @default(false)
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  donorSince DateTime?
+
+  end0      Boolean   @default(false)
+  end1      Boolean   @default(false)
+  end2      Boolean   @default(false)
+  end3      Boolean   @default(false)
+  end4      Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payments  Payment[] // relación inversa (útil para consultas)
 }
 
 // --- MODELOS REQUERIDOS POR AUTH.JS ---
@@ -82,6 +51,7 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([provider, providerAccountId])
 }
 
@@ -97,5 +67,62 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
+
   @@unique([identifier, token])
+}
+
+model Payment {
+  id String @id @default(cuid())
+
+  // relación
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // proveedor
+  provider PaymentProvider
+  status   PaymentStatus   @default(CREATED)
+
+  // importes
+  amount   Decimal @db.Decimal(10, 2) // p.ej. 0.50
+  currency String  @default("EUR")
+
+  // PayPal: IDs relevantes
+  providerOrderId   String? // v2/checkout/orders id
+  providerCaptureId String? // v2/payments/captures id (cuando hay captura)
+  payerId           String? // PayPal PAYER.ID (p-xxx)
+  payerEmail        String?
+
+  // auditoría / idempotencia webhook
+  lastEventId String? // event.id del webhook más reciente
+  rawWebhook  Json? // último payload (útil para debug)
+  metadata    Json? // cualquier info extra (custom_id, etc.)
+
+  // timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  approvedAt  DateTime?
+  completedAt DateTime?
+
+  @@unique([provider, providerOrderId]) // evita duplicar la misma orden
+  @@unique([provider, providerCaptureId]) // evita duplicar la misma captura
+  @@unique([lastEventId]) // idempotencia por webhook (si lo guardas)
+  @@index([userId, status])
+}
+
+enum PaymentProvider {
+  PAYPAL
+  STRIPE
+  MANUAL
+  TEST
+}
+
+enum PaymentStatus {
+  CREATED // orden creada (antes de aprobar/capturar)
+  APPROVED // aprobado por el usuario (PayPal)
+  COMPLETED // dinero capturado con éxito
+  CANCELED
+  EXPIRED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
 }

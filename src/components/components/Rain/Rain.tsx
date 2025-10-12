@@ -27,7 +27,7 @@ export const Rain = () => {
       constructor(
         public x: number,
         public y: number
-      ) {}
+      ) { }
     }
 
     class Particle {
@@ -49,7 +49,8 @@ export const Rain = () => {
 
       render(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = 'rgba(128,255,255,.8)';
-        ctx.fillRect(this.x, this.y, this.size, this.size);
+        // ctx.fillRect(this.x, this.y, this.size, this.size);
+        ctx.fillRect(this.x, this.y, 1.2, this.size * 5);
       }
 
       splash(n: number) {
@@ -81,9 +82,12 @@ export const Rain = () => {
       }
 
       update(dt: number): this {
-        const g = (dt / 1000) * 9.8 * (this.size / 2);
+        // const g = (dt / 1000) * 9.8 * (this.size / 2);
+        const g = (dt / 1000) * 9.8 * (this.size / 2) * config.speedMultiplier;
         this.velocity.y += g;
-        this.velocity.x = config.windForce * g;
+        // this.velocity.x = config.windForce * g;
+        this.velocity.x += config.windForce * (dt / 1000);
+
         this.y += this.velocity.y;
         this.x += this.velocity.x;
         return this;
@@ -119,7 +123,8 @@ export const Rain = () => {
       }
     }
 
-    const config = { minDropSize: 2, maxDropSize: 5, windForce: 10, particlesPerSplash: 0, dropsPerInterval: 10, dropInterval: 100, numParticles: 1000 };
+    // const config = { minDropSize: 2, maxDropSize: 5, windForce: 10, particlesPerSplash: 0, dropsPerInterval: 10, dropInterval: 100, numParticles: 1000 };
+    const config = { minDropSize: 2, maxDropSize: 5, windForce: 5, particlesPerSplash: 0, dropsPerInterval: 10, dropInterval: 30, numParticles: 1000, speedMultiplier: 2 };
 
     const particles: Particle[] = [];
     const particlePool = new Pool(config.numParticles);

@@ -15,7 +15,7 @@ export function GitHubSignInButton() {
           size={32}
           className="mr-3"
         />{' '}
-        {t('Sign up with Google')}
+        {t('Sign up with GitHub')}
       </button>
     </form>
   );

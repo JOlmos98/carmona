@@ -44,6 +44,7 @@
         "ErrorPhoneMin": "Phone must be at least 7 digits long and contain only numbers",
         "ErrorBioMax": "Bio must be less than 160 characters",
         "ErrorWebsiteUrl": "Website must be a valid URL",
+        "ErrorRepeatPassword": "Passwords do not match",
         "Verified": "Email verified.",
         "Error verifying": "Error verifying email.",
         "Email successfully verified": "Email successfully verified, log in to continue.",
@@ -64,6 +65,9 @@
         "Error password": "Incorrect password",
         "Error email": "Invalid email",
         "Don't have an account?": "Don't have an account?",
-        "Sign up": "Sign up"
+        "Sign up": "Sign up",
+        "Sign up with Google": "Sign up with Google",
+        "Sign up with GitHub": "Sign up with GitHub",
+        "An error occurred during login": "An error occurred during login."
     }
 }

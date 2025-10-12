@@ -31,7 +31,7 @@ export function ShowSettings() {
             <DialogHeader>
               <DialogTitle className="text-4xl text-neutral-200">Configuraciones</DialogTitle>
             </DialogHeader>
-                  <Separator className='bg-neutral-600'/>
+            <Separator className="bg-neutral-600" />
 
             <div className="space-y-6 py-4">
               <SettingsMenu />

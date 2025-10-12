@@ -4,13 +4,14 @@
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'; // Asegúrate de que la ruta a tus componentes de shadcn sea correcta
-import { Separator } from "@/components/ui/separator"
+import { Separator } from '@/components/ui/separator';
 
 // Definimos la estructura de cada enlace dentro del diálogo
 interface UrlItem {
   href: string;
   text: string;
   className?: string;
+  action?: () => void;
 }
 
 // Definimos las props que recibirá nuestro componente
@@ -43,7 +44,7 @@ export const ButtonDialog = ({ buttonText, dialogTitle, urlItems, my }: Props) =
         <DialogHeader>
           <DialogTitle className="text-4xl text-neutral-200 text-center mb-2">{dialogTitle}</DialogTitle>
         </DialogHeader>
-      <Separator className='bg-neutral-600'/>
+        <Separator className="bg-neutral-600" />
 
         {/* Contenedor para la lista de enlaces */}
         <div className="flex flex-col items-center justify-center space-y-2 py-2">
@@ -52,14 +53,44 @@ export const ButtonDialog = ({ buttonText, dialogTitle, urlItems, my }: Props) =
           {urlItems &&
             urlItems.map((urlItem, index) => (
               //   {items.map((item, index) => (
-              <Link
-                key={index}
-                href={urlItem.href}
-                className={urlItem.className ? urlItem.className : "w-full text-center text-3xl text-neutral-300 p-2 hover:text-white transition duration-300"}
-                onClick={() => setIsOpen(false)} // Cierra el diálogo al hacer clic
-              >
-                {urlItem.text}
-              </Link>
+
+              //! meter en el form una función opcional para que se pueda hacer el logout.
+
+              <form action={urlItem.action ? urlItem.action : ''}>
+                {/* <form action={logOut}>
+      <button
+        type="submit"
+        className={'text-red-300 hover:text-red-400 text-3xl my-4 transition duration-200 erase-in-out cursor-pointer'}
+      >
+        Cerrar Sesión
+      </button>
+    </form> */}
+                {urlItem.action && (
+                  <button
+                    type="submit"
+                    key={index}
+                    // href={urlItem.action ? "" : urlItem.href}
+                    className={
+                      urlItem.className ? urlItem.className : 'w-full text-center text-3xl text-neutral-300 p-2 hover:text-white transition duration-300'
+                    }
+                    // onClick={() => setIsOpen(false)} // Cierra el diálogo al hacer clic
+                  >
+                    {urlItem.text}
+                  </button>
+                )}
+                {!urlItem.action && (
+                  <Link
+                    key={index}
+                    href={urlItem.action ? '' : urlItem.href}
+                    className={
+                      urlItem.className ? urlItem.className : 'w-full text-center text-3xl text-neutral-300 p-2 hover:text-white transition duration-300'
+                    }
+                    onClick={() => setIsOpen(false)} // Cierra el diálogo al hacer clic
+                  >
+                    {urlItem.text}
+                  </Link>
+                )}
+              </form>
             ))}
         </div>
       </DialogContent>

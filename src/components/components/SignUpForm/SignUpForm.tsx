@@ -71,7 +71,7 @@ export const SignUpForm = () => {
               {...register('userName')}
               disabled={isLoading}
             />
-            {errors.userName && <p className="text-red-500 text-sm mt-1">{errors.userName.message}</p>}
+            {errors.userName && <p className="text-red-500 mt-1">{t('ErrorNameMin')}</p>}
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export const SignUpForm = () => {
               {...register('email')}
               disabled={isLoading}
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+            {errors.email && <p className="text-red-500 mt-1">{t('ErrorEmailInvalid')}</p>}
           </div>
         </div>
 
@@ -101,7 +101,7 @@ export const SignUpForm = () => {
               {...register('password')}
               disabled={isLoading}
             />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+            {errors.password && <p className="text-red-500 mt-1">{t('ErrorPasswordMin')}</p>}
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export const SignUpForm = () => {
               {...register('repeatPassword')}
               disabled={isLoading}
             />
-            {errors.repeatPassword && <p className="text-red-500 text-sm mt-1">{errors.repeatPassword.message}</p>}
+            {errors.repeatPassword && <p className="text-red-500 mt-1">{t('ErrorRepeatPassword')}</p>}
           </div>
         </div>
 

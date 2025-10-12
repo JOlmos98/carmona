@@ -5,6 +5,7 @@ import { ButtonMenu, Rain } from '@/components/components';
 import { getTranslations } from 'next-intl/server';
 import { SignOutButton } from '@/components/components/SignOutButton/SignOutButton';
 import { ButtonDialog } from '@/components/components/ButtonDialog/ButtonDialog';
+import { logOut } from '@/lib/actions';
 // import { ShowOptions } from '../../../components/components/Options/ShowOptions';
 
 export default async function Menu() {
@@ -41,7 +42,12 @@ export default async function Menu() {
           urlItems={[
             { href: '/', text: 'FAQs' },
             { href: '/', text: 'Credits' },
-            { href: '/logout', text: 'Cerrar sesión', className: 'text-red-300 hover:text-red-400 text-4xl p-2 transition duration-200 erase-in-out cursor-pointer' }
+            {
+              href: '/',
+              text: 'Cerrar sesión',
+              className: 'text-red-300 hover:text-red-400 text-4xl p-2 transition duration-200 erase-in-out cursor-pointer',
+              action: logOut
+            }
           ]}
         />
 

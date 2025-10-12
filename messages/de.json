@@ -44,6 +44,7 @@
         "ErrorPhoneMin": "Die Telefonnummer muss mindestens 7 Ziffern enthalten und nur Zahlen enthalten",
         "ErrorBioMax": "Die Biografie darf höchstens 160 Zeichen lang sein",
         "ErrorWebsiteUrl": "Die Website muss eine gültige URL sein",
+        "ErrorRepeatPassword": "Passwörter stimmen nicht überein",
         "Verified": "E-Mail verifiziert.",
         "Error verifying": "Fehler beim Verifizieren der E-Mail.",
         "Email successfully verified": "E-Mail erfolgreich verifiziert, melde dich an, um fortzufahren.",
@@ -64,6 +65,9 @@
         "Error password": "Falsches Passwort",
         "Error email": "Ungültige E-Mail",
         "Don't have an account?": "Du hast noch kein Konto?",
-        "Sign up": "Registrieren"
+        "Sign up": "Registrieren",
+        "Sign up with Google": "Mit Google registrieren",
+        "Sign up with GitHub": "Mit GitHub registrieren",
+        "An error occurred during login": "Während der Anmeldung ist ein Fehler aufgetreten."
     }
 }

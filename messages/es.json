@@ -44,6 +44,7 @@
         "ErrorPhoneMin": "El teléfono debe tener al menos 7 dígitos y contener solo números",
         "ErrorBioMax": "La biografía debe tener menos de 160 caracteres",
         "ErrorWebsiteUrl": "El sitio web debe ser una URL válida",
+        "ErrorRepeatPassword": "Las contraseñas no coinciden",
         "Verified": "Verificado",
         "Error verifying": "Error verificando",
         "Email successfully verified": "Correo electrónico verificado con éxito, inicia sesión para continuar.",
@@ -64,6 +65,9 @@
         "Error password": "Contraseña incorrecta",
         "Error email": "Correo electrónico no válido",
         "Don't have an account?": "¿No tienes una cuenta?",
-        "Sign up": "Regístrate"
+        "Sign up": "Regístrate",
+        "Sign up with Google": "Registrarse con Google",
+        "Sign up with GitHub": "Registrarse con GitHub",
+        "An error occurred during login": "Ocurrió un error durante el inicio de sesión."
     }
 }

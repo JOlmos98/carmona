@@ -6,17 +6,14 @@ import { useSettings } from './SettingsContext';
 import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 import { useSession } from 'next-auth/react';
 import { SignOutButton } from '../SignOutButton/SignOutButton';
-import { Separator } from '@/components/ui/separator';
 
 export function SettingsMenu() {
   const { volume, setVolume, isAudioEnabled, setIsAudioEnabled } = useSettings();
-
   const session = useSession();
 
   return (
     // Añadimos un poco de espacio vertical entre cada opción para mejorar la apariencia
     <div className="space-y-4">
-
       {/* --- Fila del Volumen --- */}
       {/* Usamos flex para poner los elementos en línea, items-center para centrarlos verticalmente */}
       {/* y justify-between para empujar la etiqueta a la izquierda y el slider a la derecha. */}
@@ -54,7 +51,7 @@ export function SettingsMenu() {
         <LanguageSelector />
       </div>
 
-      {session && (
+      {session.status === 'authenticated' && (
         <div className="flex items-center justify-between">
           <SignOutButton />
         </div>

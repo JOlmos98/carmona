@@ -12,14 +12,13 @@ import { logInSchema } from '@/zod/logInSchema';
 import { Link } from '@/i18n/navigation';
 import { GoogleSignInButton } from '../GoogleSignInButton/GoogleSigninButton';
 import { GitHubSignInButton } from '../GitHubSignInButton/GitHubSignInButton';
-import { SignOutButton } from '../SignOutButton/SignOutButton';
 
 export const LogInForm = () => {
   const t = useTranslations('LogIn');
   const f = useTranslations('SignUp');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const session = useSession();
+  // const session = useSession();
 
   const form = useForm<z.infer<typeof logInSchema>>({ resolver: zodResolver(logInSchema), defaultValues: { email: '', password: '' } });
 
@@ -71,7 +70,7 @@ export const LogInForm = () => {
               {...register('email')}
               disabled={isLoading}
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{t('Error email')}</p>}
+            {errors.email && <p className="text-red-500 mt-1">{t('Error email')}</p>}
           </div>
         </div>
 
@@ -85,14 +84,14 @@ export const LogInForm = () => {
               {...register('password')}
               disabled={isLoading}
             />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{t('Error password')}</p>}
+            {errors.password && <p className="text-red-500 mt-1">{t('Error password')}</p>}
           </div>
         </div>
 
         <p className="flex justify-center">
           <button
             type="submit"
-            className="text-4xl text-neutral-400 hover:text-white transition rounded-md disabled:opacity-50 cursor-pointer"
+            className="text-4xl text-neutral-400 hover:text-white transition duration-200 rounded-md disabled:opacity-50 cursor-pointer"
             disabled={isLoading}
           >
             {isLoading ? 'Loading...' : t('Login')}
@@ -104,12 +103,12 @@ export const LogInForm = () => {
       <GitHubSignInButton />
 
       {/* DEBUG */}
-      {session.status === 'authenticated' && (
+      {/* {session.status === 'authenticated' && (
         <div>
           <SignOutButton />
           <p>Sesión iniciada como {JSON.stringify(session)}</p>
         </div>
-      )}
+      )} */}
 
       <p className="text-md text-center text-neutral-400">
         {t("Don't have an account?")}{' '}

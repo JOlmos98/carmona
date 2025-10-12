@@ -9,7 +9,6 @@ import Image from 'next/image';
 
 export default async function LogInPage() {
   const h = await getTranslations('Home');
-
   const session = await auth();
   const locale = await getLocale();
   if (session) redirect({ href: '/game', locale: locale });
@@ -32,7 +31,7 @@ export default async function LogInPage() {
         <div className="flex justify-center my-14">
           <Link
             href="/"
-            className="w-full text-4xl text-neutral-400 hover:text-white"
+            className="w-full text-4xl text-neutral-400 hover:text-white transition duration-200"
           >
             {h('Back')}
           </Link>

@@ -27,7 +27,7 @@ export default async function LogInPage() {
         <div className="flex justify-center my-14">
           <Link
             href="/"
-            className="w-full text-4xl text-neutral-400 hover:text-white"
+            className="w-full text-4xl text-neutral-400 hover:text-white transition duration-200"
           >
             {h('Back')}
           </Link>

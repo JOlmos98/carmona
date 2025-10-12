@@ -20,7 +20,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  userName   String?   @default(cuid())
+  userName   String?   @unique @default(cuid())
   isVerified Boolean   @default(false)
   isDonor    Boolean   @default(false)
   donorSince DateTime?

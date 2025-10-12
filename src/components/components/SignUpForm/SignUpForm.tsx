@@ -8,10 +8,12 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useState } from 'react';
 import { signUpSchema } from '@/zod/signUpSchema';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'; // <-- AÑADE ESTA LÍNEA
 
 export const SignUpForm = () => {
   const t = useTranslations('SignUp');
   const [isLoading, setIsLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -28,8 +30,20 @@ export const SignUpForm = () => {
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
     setIsLoading(true);
     try {
+
+      if (!executeRecaptcha) { // <-- AÑADE ESTE BLOQUE
+        throw new Error('Recaptcha not ready');
+      }
+      const recaptchaToken = await executeRecaptcha('signup'); // <-- AÑADE ESTA LÍNEA
+
       // Preparamos los datos para la API (sin "repeatPassword")
-      const submissionData = { userName: values.userName, email: values.email, password: values.password };
+      // const submissionData = { userName: values.userName, email: values.email, password: values.password };
+      const submissionData = { // <-- MODIFICA ESTE OBJETO
+        userName: values.userName,
+        email: values.email,
+        password: values.password,
+        recaptchaToken
+      };
 
       const res = await fetch('/api/signUp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(submissionData) });
 

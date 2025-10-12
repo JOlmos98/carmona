@@ -1,63 +1,75 @@
-// src/app/api/signup/route.ts
-
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import { signUpSchema } from '@/zod/signUpSchema'; // Asegúrate de tener este schema
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
+import { z } from 'zod';
 
-const prisma = new PrismaClient();
+const signUpBodySchema = z.object({
+  userName: z.string().min(3).max(30).trim(),
+  email: z.string().email(),
+  password: z.string().min(8),
+  recaptchaToken: z.string().min(10)
+});
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const parsed = signUpSchema.safeParse(body);
-
+    const parsed = signUpBodySchema.safeParse(body);
     if (!parsed.success) {
-      return NextResponse.json({ error: 'Datos inválidos' }, { status: 400 });
+      return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
     }
 
-    const { userName, email, password } = parsed.data;
+    const { userName, email, password, recaptchaToken } = parsed.data;
 
-    // 1. Verificar si el usuario ya existe con Prisma
-    const existingUser = await prisma.user.findUnique({ where: { email } });
-
-    if (existingUser) {
-      return NextResponse.json({ error: 'El email ya está en uso' }, { status: 409 });
+    // 1) Verificar reCAPTCHA v3
+    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    if (!secret) {
+      return NextResponse.json({ error: 'Recaptcha not configured' }, { status: 500 });
     }
 
-    // 2. Hashear la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const params = new URLSearchParams();
+    params.append('secret', secret);
+    params.append('response', recaptchaToken);
 
-    // 3. Crear el usuario en la base de datos con Prisma
-    await prisma.user.create({ data: { userName, email, password: hashedPassword } });
+    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      body: params
+    });
+    const recaptchaJson = await recaptchaRes.json();
 
-    // Lógica de verificación de email (es casi idéntica a la que tenías)
-    const verificationToken = jwt.sign(
-      { email },
-      process.env.NEXTAUTH_SECRET!, // Reutilizamos el secret de NextAuth
-      { expiresIn: '1d' }
-    );
+    // Puedes ajustar el umbral (0.5–0.7 es común)
+    if (!recaptchaJson.success || (typeof recaptchaJson.score === 'number' && recaptchaJson.score < 0.5)) {
+      return NextResponse.json({ error: 'Recaptcha failed' }, { status: 403 });
+    }
 
-    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/verify-email?token=${verificationToken}`;
+    // 2) Comprobar duplicados
+    const existingByEmail = await prisma.user.findUnique({ where: { email } });
+    if (existingByEmail) {
+      return NextResponse.json({ error: 'Email already registered' }, { status: 409 });
+    }
 
-    const transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: process.env.EMAIL_FROM, pass: process.env.EMAIL_PASS } });
+    // (Opcional) Si quieres forzar userName único:
+    // Asegúrate de tener @unique en el schema para userName.
+    const existingByUserName = await prisma.user.findUnique({ where: { userName } }).catch(() => null);
+    if (existingByUserName) {
+      return NextResponse.json({ error: 'Username already taken' }, { status: 409 });
+    }
 
-    await transporter.sendMail({
-      to: email,
-      from: process.env.EMAIL_FROM,
-      subject: 'Verifica tu cuenta para Carmona',
-      html: `
-              <h1>¡Bienvenido a Carmona!</h1>
-              <p>Por favor, haz clic en el siguiente enlace para verificar tu cuenta:</p>
-              <a href="${verificationUrl}" style="padding: 10px 20px; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px;">Verificar Email</a>
-            `
+    // 3) Hash de la password
+    const hash = await bcrypt.hash(password, 12);
+
+    // 4) Crear usuario
+    await prisma.user.create({
+      data: {
+        userName,
+        email,
+        password: hash,
+        // isDonor: false (por defecto de tu schema)
+      }
     });
 
-    return NextResponse.json({ message: 'Usuario creado. Por favor, verifica tu email.' }, { status: 201 });
-  } catch (error) {
-    console.error('Error en el registro:', error);
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
+    return NextResponse.json({ ok: true }, { status: 201 });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
